@@ -98,3 +98,27 @@ const ResistorDecoder = () => {
         <div>{result.tolerance}</div>
       </div>
     </div>
+  );
+};
+
+// --- Main App ---
+
+const App = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'decoder': return <ResistorDecoder />;
+      default: return <HomePage onNavigate={setCurrentPage} />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-50">
+      <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <main className="p-8">{renderPage()}</main>
+    </div>
+  );
+};
+
+export default App;
